@@ -19,7 +19,7 @@ function updateToDoListOnScreen() {
   }
 
   // offene ToDo's
-  const offeneToDos = todos.filter((offen) => !offen.erledigt);
+  const offeneToDos = todos.filter((offen) => !offen.erledigt); // filtere wie viele noch offen sind
   const elementAnzahl = document.getElementById('anzahl');
   elementAnzahl.textContent = `${offeneToDos.length} ToDo's offen`;
 }
@@ -36,12 +36,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
       neuesToDoElement.value = '';
 
       todo.addEventListener('loeschen', (e) => {
-        const index = todos.indexOf(e.target);
-        todos.splice(index, 1);
+        const index = todos.indexOf(e.target); // e.target, wo event ausgelöst wird 
+        todos.splice(index, 1); // schneidet element aus index +1, 
         updateToDoListOnScreen();
       });
 
       updateToDoListOnScreen();
     }
   });
+  // code, beispiel loeschen addeventlistener, live server nicht vergessen 
+  const aufevent = document.getElementById('aufraeumen');
+  aufevent.addEventListener('click', (event) => {
+  const offeneToDos = todos.filter((offen) => !offen.erledigt); // filtere wie viele noch offen sind
+  todos = offeneToDos;
+  updateToDoListOnScreen();
+  });
+
 });
